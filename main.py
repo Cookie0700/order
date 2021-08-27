@@ -30,7 +30,7 @@ def greedy(dishes: list, maxCost: float, keyFnct: Callable) -> Tuple[list, float
         if (totalCal + sortedDishes[i].get_cost() <= maxCost):
             result.append(sortedDishes[i])
             totalCal += sortedDishes[i].get_cost()
-    return (result, totalCal)
+    return (result, round(totalCal, 2))
 
 
 def create_menu(names: list, costs: list) -> list:
@@ -74,9 +74,9 @@ def main():
         exit(1)
     lunch, totalCosts = greedy(menu, maxCost, Dish.get_cost)
     print(
-        f"You'll pay {totalCosts} for your {get_mealtime_from_hour()} and this is what you'll eat:")
+        f"You'll pay ${totalCosts} for your {get_mealtime_from_hour()} and this is what you'll eat:")
     for dish in lunch:
-        print(f"  - ${dish.get_cost()}")
+        print(f"  - {str(dish)} (${dish.get_cost()})")
 
 
 if __name__ == '__main__':
